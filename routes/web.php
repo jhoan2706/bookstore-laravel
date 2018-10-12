@@ -28,3 +28,5 @@ Route::get('/name/{name}/lastname/{last_name?}',function($name,$last_name=null){
 
 //Para el TRainerCOntroller resource
 Route::resource('trainers','TrainerController');
+
+Route::resource('libro','LibroController');

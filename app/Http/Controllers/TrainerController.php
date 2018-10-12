@@ -35,11 +35,19 @@ class TrainerController extends Controller
      */
     public function store(Request $request)
     {
-        //return $request->all();
+//        return $request;
+        if ($request->hasFile('avatar')) {
+            $file=$request->file('avatar');//trata la img con laravel file
+            $name=time().$file->getClientOriginalName();//get the name of the file
+            $file->move(public_path().'/images/',$name);
+            //return $name;
+        }
         $trainer=new Trainer;
         $trainer->name= $request->input('name');
+        $trainer->avatar=$name;
         $trainer->save();
-        return "Saved";
+        //return "Saved";
+        return redirect('trainers')->with('success','Entrenador guardado correctamente.');
     }
 
     /**
