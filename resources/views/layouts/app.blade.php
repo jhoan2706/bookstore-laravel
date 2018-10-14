@@ -10,7 +10,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </head>
     <body>
-        <nav class="navbar navbar-dark bg-primary">
+        <nav class="navbar navbar-dark bg-primary mb-3">
             <a href="#" class="navbar-brand">Prueba Laravel</a>
         </nav>
         

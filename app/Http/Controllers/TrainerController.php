@@ -1,19 +1,21 @@
 <?php
 
 namespace Prueba\Http\Controllers;
+
 use Prueba\Trainer;
 use Illuminate\Http\Request;
 
-class TrainerController extends Controller
-{
+class TrainerController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $trainers=Trainer::all();//consulta todos los trainer
+    public function index() {
+        $trainers = Trainer::all(); //consulta todos los trainer
+//        $id=$trainers[0]->id;
+//        $nombre=$trainers[0]->name;
         return view('trainers.index', compact('trainers'));
     }
 
@@ -22,8 +24,7 @@ class TrainerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         return view('trainers.create');
     }
 
@@ -33,21 +34,20 @@ class TrainerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
 //        return $request;
         if ($request->hasFile('avatar')) {
-            $file=$request->file('avatar');//trata la img con laravel file
-            $name=time().$file->getClientOriginalName();//get the name of the file
-            $file->move(public_path().'/images/',$name);
+            $file = $request->file('avatar'); //trata la img con laravel file
+            $name = time() . $file->getClientOriginalName(); //get the name of the file
+            $file->move(public_path() . '/images/', $name);
             //return $name;
         }
-        $trainer=new Trainer;
-        $trainer->name= $request->input('name');
-        $trainer->avatar=$name;
+        $trainer = new Trainer;
+        $trainer->name = $request->input('name');
+        $trainer->avatar = $name;
         $trainer->save();
         //return "Saved";
-        return redirect('trainers')->with('success','Entrenador guardado correctamente.');
+        return redirect('trainers')->with('success', 'Entrenador guardado correctamente.');
     }
 
     /**
@@ -56,9 +56,13 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    //implicit binding (Trainer $trainer)
+    //slug( en bd)---->para que la url se vea bonita y no con ids
+    public function show(Trainer $trainer) {
+        //$trainer= Trainer::where('slug','=',$slug)->firstOrFail();
+        //$trainer= Trainer::find($id);
+
+        return view('trainers.show', compact('trainer'));
     }
 
     /**
@@ -67,9 +71,8 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit(Trainer $trainer) {
+        return view('trainers.edit', compact('trainer'));
     }
 
     /**
@@ -79,9 +82,17 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, Trainer $trainer) {
+        $trainer->fill($request->except('avatar')); //llena todos los campos
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar'); //trata la img con laravel file
+            $name = time() . $file->getClientOriginalName(); //get the name of the file
+            $trainer->avatar=$name;
+            $file->move(public_path() . '/images/', $name);
+            //return $name;
+        }
+        $trainer->save();
+        return redirect('trainers')->with('status', 'Trainer updated!');
     }
 
     /**
@@ -90,8 +101,8 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
 }
