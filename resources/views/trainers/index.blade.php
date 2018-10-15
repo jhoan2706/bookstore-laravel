@@ -5,8 +5,9 @@
 <div class="btn-group">
     <a href="{{route('trainers.create')}}" class="btn btn-info">Crear nuevo</a>
 </div>
+@include('common.success')
 <div class="row">
-
+    
     @foreach($trainers as $trainer)
 
     <div class="col-sm mt-2">

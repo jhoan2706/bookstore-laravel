@@ -14,12 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/User','UserController@index');
+//Route::get('/User','UserController@index');
 //redireccionamiento
-Route::redirect('/here', '/there', 301);
+//Route::redirect('/here', '/there', 301);
 
 //Nombres para rutas
-Route::get('user/profile', 'UserController@showProfile')->name('profile');
+//Route::get('user/profile', 'UserController@showProfile')->name('profile');
 
 //Parametro por default
 Route::get('/name/{name}/lastname/{last_name?}',function($name,$last_name=null){
@@ -30,3 +30,6 @@ Route::get('/name/{name}/lastname/{last_name?}',function($name,$last_name=null){
 Route::resource('trainers','TrainerController');
 
 Route::resource('libro','LibroController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

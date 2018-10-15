@@ -4,6 +4,7 @@ namespace Prueba\Http\Controllers;
 
 use Prueba\Trainer;
 use Illuminate\Http\Request;
+use Prueba\Http\Requests\StoreTrainerRequest;
 
 class TrainerController extends Controller {
 
@@ -34,13 +35,9 @@ class TrainerController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-        //el manejo de la excepcion para validar datos y sus propiedades de validacion
-        $validatedData=$request->validate([
-            'name'=>'required|max:10',
-            'avatar'=>'required|image',
-            'slug'=>'required']);
-        
+    public function store(StoreTrainerRequest $request) {
+        //al momento de enviar el form, laravel valida la request en la Clase request creada y continua con el proceso
+
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar'); //trata la img con laravel file
             $name = time() . $file->getClientOriginalName(); //get the name of the file
@@ -49,11 +46,12 @@ class TrainerController extends Controller {
         }
         $trainer = new Trainer;
         $trainer->name = $request->input('name');
-        $trainer->slug=$request->input('slug');
+        $trainer->slug = $request->input('slug');
         $trainer->avatar = $name;
         $trainer->save();
         //return "Saved";
-        return redirect('trainers')->with('success', 'Entrenador guardado correctamente.');
+        return redirect()->route('trainers.index')->with('status','Trainer created succesfully!');
+        //return redirect('trainers')->with('success', 'Entrenador guardado correctamente.');
     }
 
     /**
@@ -88,17 +86,18 @@ class TrainerController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Trainer $trainer) {
+    public function update(StoreTrainerRequest $request, Trainer $trainer) {
         $trainer->fill($request->except('avatar')); //llena todos los campos
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar'); //trata la img con laravel file
             $name = time() . $file->getClientOriginalName(); //get the name of the file
-            $trainer->avatar=$name;
+            $trainer->avatar = $name;
             $file->move(public_path() . '/images/', $name);
             //return $name;
         }
         $trainer->save();
-        return redirect('trainers')->with('status', 'Trainer updated!');
+        return redirect()->route('trainers.show',[$trainer])->with('status','Trainer updated successfully!');
+        //return redirect('trainers')->with('status', 'Trainer updated!');
     }
 
     /**
@@ -107,8 +106,19 @@ class TrainerController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
-        //
+    public function destroy(Trainer $trainer) {
+        //eliminar archivo dentro de laravel
+        
+        //ruta completa en variable
+        $file_path= public_path().'/images/'.$trainer->avatar;
+        //elimino la img con laravel
+        \File::delete($file_path);
+        
+        $trainer->delete();
+        
+        //return $file_path;
+        return redirect()->route('trainers.index')->with('info','Trainer deleted successfully!');
+        //return redirect('trainers')->with('status', 'Trainer deleted!');
     }
 
 }
