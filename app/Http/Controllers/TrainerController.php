@@ -35,7 +35,12 @@ class TrainerController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-//        return $request;
+        //el manejo de la excepcion para validar datos y sus propiedades de validacion
+        $validatedData=$request->validate([
+            'name'=>'required|max:10',
+            'avatar'=>'required|image',
+            'slug'=>'required']);
+        
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar'); //trata la img con laravel file
             $name = time() . $file->getClientOriginalName(); //get the name of the file
@@ -44,6 +49,7 @@ class TrainerController extends Controller {
         }
         $trainer = new Trainer;
         $trainer->name = $request->input('name');
+        $trainer->slug=$request->input('slug');
         $trainer->avatar = $name;
         $trainer->save();
         //return "Saved";
