@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('title','Trainers Create')
 @section('content')
-<h2 class="">Entrenadores</h2>
+<h2 class="">Trainers</h2>
 <div class="btn-group">
-    <a href="{{route('trainers.create')}}" class="btn btn-info">Crear nuevo</a>
+    <a href="{{route('trainers.create')}}" class="btn btn-primary">Crear nuevo</a>
 </div>
 @include('common.success')
 <div class="row">

@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/html/prueba/app/Trainer.php</file>
             <file>file:/var/www/html/prueba/app/Http/Controllers/TrainerController.php</file>
-            <file>file:/var/www/html/prueba/resources/views/trainers/create.blade.php</file>
-            <file>file:/var/www/html/prueba/resources/views/trainers/edit.blade.php</file>
-            <file>file:/var/www/html/prueba/resources/views/trainers/index.blade.php</file>
-            <file>file:/var/www/html/prueba/resources/views/layouts/app.blade.php</file>
+            <file>file:/var/www/html/prueba/resources/assets/js/app.js</file>
+            <file>file:/var/www/html/prueba/resources/assets/js/components/ExampleComponent.vue</file>
             <file>file:/var/www/html/prueba/routes/web.php</file>
+            <file>file:/var/www/html/prueba/package.json</file>
         </group>
     </open-files>
 </project-private>

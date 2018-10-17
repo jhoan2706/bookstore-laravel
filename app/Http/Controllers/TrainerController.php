@@ -13,7 +13,9 @@ class TrainerController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index(Request $request) {
+        //valida con modelo user si el user está autenticado
+        $request->user()->authorizeRoles(['admin','user']);
         $trainers = Trainer::all(); //consulta todos los trainer
 //        $id=$trainers[0]->id;
 //        $nombre=$trainers[0]->name;
