@@ -70,6 +70,7 @@
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/trainers') }}">Trainers</a>
+                        <a href="{{ url('/pokemons') }}">Pokemons</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>

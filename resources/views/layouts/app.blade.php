@@ -37,6 +37,9 @@
                     <li class="nav-item item-active">
                         <a href="{{route('trainers.index')}}" class="nav-link">Trainers</a>
                     </li>
+                    <li class="nav-item ">
+                      <a href="{{route('pokemons.index')}}" class="nav-link">Pokemons</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                             {{ Auth::user()->name }} <span class="caret"></span>
@@ -60,7 +63,7 @@
                 </form>
             </div>
         </nav>
-        <div id="app" class="container">      
+        <div id="app" class="container">
             @yield('content')
         </div>
 

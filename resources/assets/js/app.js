@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -14,9 +13,13 @@ window.Vue = require('vue');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+//registro de un componente
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('pokemons-component', require('./components/PokemonsComponent.vue'));
+Vue.component('spinner', require('./components/Spinner.vue'));
+Vue.component('create-form-pokemon', require('./components/CreatePokemonComponent.vue'));
+Vue.component('add-pokemon-btn', require('./components/AddPokemonComponent.vue'));
 
 const app = new Vue({
-    el: '#app'
+  el: '#app'
 });
