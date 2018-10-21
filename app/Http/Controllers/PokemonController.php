@@ -17,8 +17,9 @@ class PokemonController extends Controller
       return view('pokemons.index');//se carga la vista de igual forma con return
     }
     public function store(Request $request){
+        //vuejs trabaja con ajax
       if ($request->ajax()) {
-        // code...
+        
         $pokemon=new Pokemon();
         $pokemon->name=$request->input('name');
         $pokemon->picture=$request->input('picture');
