@@ -42,7 +42,7 @@
       <button type="submit" class="btn btn-primary mt-2">Guardar</button>
     </form>
     <div class="btn-group">
-      <a href="{{route('autores.index')}}" class="btn btn-info">Volver</a>
+      <a href="{{route('autores.index')}}" class="btn btn-info mt-2">Volver</a>
     </div>
   </div>
 </div>

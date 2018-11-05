@@ -9,7 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,15 +22,16 @@ Route::get('/', function () {
 //Route::get('user/profile', 'UserController@showProfile')->name('profile');
 
 //Parametro por default
-Route::get('/name/{name}/lastname/{last_name?}',function($name,$last_name=null){
-    return "Hola ".$name." ".$last_name;
+Route::get('/name/{name}/lastname/{last_name?}', function ($name, $last_name = null) {
+    return "Hola " . $name . " " . $last_name;
 });
 
 //Para el TRainerCOntroller resource
-Route::resource('trainers','TrainerController');
+Route::resource('trainers', 'TrainerController');
+Route::resource('autores', 'AutorController');
 
-Route::resource('libro','LibroController');
+Route::resource('libro', 'LibroController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('pokemons','PokemonController');
+Route::resource('pokemons', 'PokemonController');

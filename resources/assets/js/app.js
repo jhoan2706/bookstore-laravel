@@ -19,7 +19,9 @@ Vue.component('pokemons-component', require('./components/PokemonsComponent.vue'
 Vue.component('spinner', require('./components/Spinner.vue'));
 Vue.component('create-form-pokemon', require('./components/CreatePokemonComponent.vue'));
 Vue.component('add-pokemon-btn', require('./components/AddPokemonComponent.vue'));
+Vue.component('show-object-btn', require('./components/BtnShowObjectComponent.vue'));
+Vue.component('show-autor-modal', require('./components/ShowAutorComponent.vue'));
 
 const app = new Vue({
-  el: '#app'
+    el: '#app'
 });

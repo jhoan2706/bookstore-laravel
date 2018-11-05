@@ -60,13 +60,13 @@ export default {
   data() {
     return {
       autor_info: {},
-      pais_autor:{}
+      pais_autor: {}
     };
   },
   created() {
     EventBus.$on("show-object", data => {
       this.autor_info = data;
-      this.pais_autor=this.autor_info.pais;//traspasando mini json objeto de autor_info ya que no permite mostrar en html autor_info.pais.nombre
+      this.pais_autor = this.autor_info.pais; //traspasando mini json objeto de autor_info ya que no permite mostrar en html autor_info.pais.nombre
       //console.log(this.autor_info);
     });
   }
