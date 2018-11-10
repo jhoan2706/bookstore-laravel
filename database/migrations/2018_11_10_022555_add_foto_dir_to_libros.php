@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RemoveTelefonoFromAutors extends Migration
+class AddFotoDirToLibros extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class RemoveTelefonoFromAutors extends Migration
      */
     public function up()
     {
-        Schema::table('autors', function (Blueprint $table) {
-            $table->dropColumn(['telefono','email']);
+        Schema::table('libros', function (Blueprint $table) {
+            $table->string('foto_dir');
         });
     }
 
@@ -25,6 +25,8 @@ class RemoveTelefonoFromAutors extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('libros', function (Blueprint $table) {
+            $table->dropColumn('foto_dir');
+        });
     }
 }

@@ -44771,7 +44771,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       autor_info: {},
-      pais_autor: {}
+      pais_autor: {},
+      img_src: "/images/1539623597ash.jpg"
     };
   },
   created: function created() {
@@ -44779,6 +44780,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     __WEBPACK_IMPORTED_MODULE_0__event_bus__["a" /* default */].$on("show-object", function (data) {
       _this.autor_info = data;
+      _this.img_src = "/images/autores/" + _this.autor_info.foto_dir;
       _this.pais_autor = _this.autor_info.pais; //traspasando mini json objeto de autor_info ya que no permite mostrar en html autor_info.pais.nombre
       //console.log(this.autor_info);
     });
@@ -44820,7 +44822,7 @@ var render = function() {
               [
                 _c("div", { staticClass: "card-block" }, [
                   _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-12 col-sm-12" }, [
+                    _c("div", { staticClass: "col-md-8 col-sm-12" }, [
                       _c("h2", { staticClass: "card-title" }, [
                         _vm._v(
                           "Nombre: " +
@@ -44846,6 +44848,23 @@ var render = function() {
                         _vm._v(_vm._s(_vm.autor_info.fecha_nacimiento))
                       ])
                     ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-md-4 col-sm-4 text-center" },
+                      [
+                        _c("img", {
+                          staticClass: "btn-md",
+                          staticStyle: {
+                            height: "100px",
+                            width: "100px",
+                            "background-color": "#EFEFEF",
+                            margin: "20px"
+                          },
+                          attrs: { src: _vm.img_src, alt: "" }
+                        })
+                      ]
+                    ),
                     _vm._v(" "),
                     _vm._m(1),
                     _vm._v(" "),
@@ -44873,7 +44892,7 @@ var staticRenderFns = [
       _c(
         "h5",
         { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_c("strong", [_vm._v("Ver Autor")])]
+        [_c("strong", [_vm._v("Autor")])]
       ),
       _vm._v(" "),
       _c(

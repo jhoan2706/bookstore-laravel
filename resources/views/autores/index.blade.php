@@ -22,7 +22,7 @@
           <th scope="col">Apellido</th>
           <th scope="col">Pais/Región</th>
           <th scope="col">Fecha Nacimiento</th>
-          <th scope="col">Acciones</th>
+          <th scope="col" colspan="3" align="justify">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -36,7 +36,14 @@
           <td id="{{$autor->id}}">
             {{-- componente independiente,se puede llamar desde donde sea(solo "ver mas") --}}
             <show-object-btn object='{{$autor}}'></show-object-btn>
-            <a href="/autores/{{$autor->id}}/edit" class="btn btn-info">Editar</a>
+          </td>
+          <td><a href="/autores/{{$autor->id}}/edit" class="btn btn-info">Editar</a></td>
+          <td>
+            <form action="{{action('AutorController@destroy',$autor->id)}}" method="POST">
+              {{csrf_field()}}
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
           </td>
         </tr>
         @endforeach

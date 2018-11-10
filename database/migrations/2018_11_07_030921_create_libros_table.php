@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateLibrosTable extends Migration
 {
@@ -16,11 +16,13 @@ class CreateLibrosTable extends Migration
         Schema::create('libros', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('resumen');
-            $table->integer('npagina');
-            $table->integer('edicion');
-            $table->string('autor');
-            $table->decimal('precio',5,2);
+            $table->text('resumen');
+            $table->integer('n_paginas');
+            $table->float('precio', 8, 2);
+            $table->date('fecha_publicacion');
+            $table->integer('categoria_id')->unsigned;
+            $table->integer('editorial_id')->unsigned;
+            $table->integer('libreria_id')->unsigned;
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><strong>Ver Autor</strong></h5>
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Autor</strong></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -13,7 +13,7 @@
         <div class="card card-inverse" style="background-color: #FFFFF;">
         <div class="card-block">
             <div class="row">
-                <div class="col-md-12 col-sm-12">
+                <div class="col-md-8 col-sm-12">
                     <h2 class="card-title">Nombre: {{autor_info.nombre+" "+autor_info.apellido}}</h2>
                     <!-- <p class="card-text"><strong>Profile: </strong> Web Developer </p> -->
                     <p><strong>Nacionalidad: </strong>
@@ -22,9 +22,9 @@
                     <p class="card-text"><strong>Fecha Nacimiento: </strong>{{autor_info.fecha_nacimiento}}</p>
                     <!-- <p class="card-text"><strong>Nacionalidad: </strong>{{autor_info.fecha_nacimiento}}</p> -->
                 </div>
-                <!-- <div class="col-md-4 col-sm-4 text-center">
-                    <img class="btn-md"  v-bind:src="'../../../../public/images/'+autor_info.foto_dir" alt="" style="border-radius:50%;">
-                </div> -->
+                <div class="col-md-4 col-sm-4 text-center">
+                    <img class="btn-md"  :src="img_src" alt="" style="height:100px;width: 100px;background-color: #EFEFEF;margin: 20px">
+                </div>
                 <div class="col-md-4 col-sm-4 text-center">
                     <h2><strong> 5.2K </strong></h2>
                     <p><small>Likes</small></p>
@@ -60,12 +60,14 @@ export default {
   data() {
     return {
       autor_info: {},
-      pais_autor: {}
+      pais_autor: {},
+      img_src: "/images/1539623597ash.jpg"
     };
   },
   created() {
     EventBus.$on("show-object", data => {
       this.autor_info = data;
+      this.img_src = "/images/autores/" + this.autor_info.foto_dir;
       this.pais_autor = this.autor_info.pais; //traspasando mini json objeto de autor_info ya que no permite mostrar en html autor_info.pais.nombre
       //console.log(this.autor_info);
     });

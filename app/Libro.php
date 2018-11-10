@@ -6,5 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Libro extends Model
 {
-    protected $fillable=['nombre','resumen','npagina','edicion','autor','precio'];
+    public function autors()
+    {
+        return $this->belongsToMany('Prueba\Autor');
+    }
+    public function categoria_libro()
+    {
+        return $this->belongsTo('Prueba\CategoriaLibro');
+    }
 }
