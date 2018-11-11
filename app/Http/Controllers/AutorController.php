@@ -1,12 +1,12 @@
 <?php
 
-namespace Prueba\Http\Controllers;
+namespace Bookstore\Http\Controllers;
 
+use Bookstore\Autor;
+use Bookstore\Http\Requests\StoreAutorRequest;
+use Bookstore\Http\Resources\Autor as AutorResource;
+use Bookstore\Pais;
 use Illuminate\Http\Request;
-use Prueba\Autor;
-use Prueba\Http\Requests\StoreAutorRequest;
-use Prueba\Http\Resources\Autor as AutorResource;
-use Prueba\Pais;
 
 class AutorController extends Controller
 {
@@ -28,25 +28,27 @@ class AutorController extends Controller
             ->apellido($apellido)
             ->pais($pais_query)
             ->paginate(5)->appends(['nombre' => $nombre, 'apellido' => $apellido, 'pais' => $pais]); //appends me ayuda a que cuando se filtre, se mantenga el paginado al pasar de pagina
-        return view('autores.index', compact('autores'));
+
+        //$autores=Autor::with('libros')->get()
+        return view('autores.index', compact('autores'));        
 
     }
     //FOR API ROUTES AND API EXAMPLE
     public function storeAutor(Request $request)
     {
-        $autor = $request->isMethod('put') ? Autor::findOrFail($request->autor_id) : new Autor;//check if $request->autor_id exists
+        $autor = $request->isMethod('put') ? Autor::findOrFail($request->autor_id) : new Autor; //check if $request->autor_id exists
         $autor->id = $request->input('autor_id');
         $autor->nombre = $request->input('nombre');
         $autor->apellido = $request->input('apellido');
         $autor->fecha_nacimiento = $request->input('fecha_nacimiento');
         $autor->pais_id = $request->input('pais_id');
-        if($autor->save()) {
+        if ($autor->save()) {
             return new AutorResource($autor);
         }
     }
     public function destroyAutor($id)
     {
-        $autor=Autor::findOrFail($id);
+        $autor = Autor::findOrFail($id);
         if ($autor->delete()) {
             return new AutorResource($autor);
         }

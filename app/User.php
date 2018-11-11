@@ -1,6 +1,6 @@
 <?php
 
-namespace Prueba;
+namespace Bookstore;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,8 +10,17 @@ class User extends Authenticatable
     use Notifiable;
     
     public function roles(){
-        return $this->belongsToMany('Prueba\Role');
+        return $this->belongsToMany('Bookstore\Role');
     }
+    public function isAdmin()
+    {
+        if ($this->role=='admin') {
+            return true;
+        }
+        return false;
+    }
+
+    
     public function authorizeRoles($roles) {
         if($this->hasAnyRole($roles)){
             return true;

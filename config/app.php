@@ -167,15 +167,15 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Spatie\Permission\PermissionServiceProvider::class,
         /*
          * Application Service Providers...
          */
-        Prueba\Providers\AppServiceProvider::class,
-        Prueba\Providers\AuthServiceProvider::class,
-        // Prueba\Providers\BroadcastServiceProvider::class,
-        Prueba\Providers\EventServiceProvider::class,
-        Prueba\Providers\RouteServiceProvider::class,
+        Bookstore\Providers\AppServiceProvider::class,
+        Bookstore\Providers\AuthServiceProvider::class,
+        // Bookstore\Providers\BroadcastServiceProvider::class,
+        Bookstore\Providers\EventServiceProvider::class,
+        Bookstore\Providers\RouteServiceProvider::class,
         
         /*
          * Laravel Colective Service Providers...

@@ -1,6 +1,6 @@
 <?php
 
-namespace Prueba\Http\Requests;
+namespace Bookstore\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

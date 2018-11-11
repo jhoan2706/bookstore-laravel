@@ -50,6 +50,9 @@
                 <li class="nav-item ">
                     <a href="{{route('autores.index')}}" class="nav-link">Autores</a>
                 </li>
+                <li class="nav-item ">
+                    <a href="{{route('libros.index')}}" class="nav-link">Libros</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" role="button" aria-expanded="false"
                         aria-haspopup="true">

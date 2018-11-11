@@ -1,8 +1,8 @@
 <?php
 
-namespace Prueba\Http\Controllers\Auth;
+namespace Bookstore\Http\Controllers\Auth;
 
-use Prueba\Http\Controllers\Controller;
+use Bookstore\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -35,5 +35,14 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+    protected function authenticated()
+    {
+        if (Auth::User()->isAdmin()) {
+            return redirect('/admin');
+        }
+        else{
+            return redirect('/');
+        }
     }
 }

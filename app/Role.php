@@ -1,12 +1,12 @@
 <?php
 
-namespace Prueba;
+namespace Bookstore;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
     public function users(){
-        return $this->belongsToMany('Prueba\User');
+        return $this->belongsToMany('Bookstore\User');
     }
 }

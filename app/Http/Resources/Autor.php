@@ -1,6 +1,6 @@
 <?php
 
-namespace Prueba\Http\Resources;
+namespace Bookstore\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
 

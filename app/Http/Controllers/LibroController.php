@@ -1,10 +1,10 @@
 <?php
 
-namespace Prueba\Http\Controllers;
+namespace Bookstore\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Prueba\Libro;
-use Prueba\CategoriaLibro;
+use Bookstore\Libro;
+use Bookstore\CategoriaLibro;
 
 class LibroController extends Controller
 {

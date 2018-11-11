@@ -1,6 +1,6 @@
 <?php
 
-namespace Prueba\Http\Middleware;
+namespace Bookstore\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Fideloper\Proxy\TrustProxies as Middleware;

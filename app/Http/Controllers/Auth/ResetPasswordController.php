@@ -1,8 +1,8 @@
 <?php
 
-namespace Prueba\Http\Controllers\Auth;
+namespace Bookstore\Http\Controllers\Auth;
 
-use Prueba\Http\Controllers\Controller;
+use Bookstore\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller

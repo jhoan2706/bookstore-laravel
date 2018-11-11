@@ -1,9 +1,9 @@
 <?php
 
-namespace Prueba\Http\Controllers\Auth;
+namespace Bookstore\Http\Controllers\Auth;
 
-use Prueba\User;
-use Prueba\Http\Controllers\Controller;
+use Bookstore\User;
+use Bookstore\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -58,7 +58,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \Prueba\User
+     * @return \Bookstore\User
      */
     protected function create(array $data)
     {

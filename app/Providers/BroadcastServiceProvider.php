@@ -1,6 +1,6 @@
 <?php
 
-namespace Prueba\Providers;
+namespace Bookstore\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Broadcast;

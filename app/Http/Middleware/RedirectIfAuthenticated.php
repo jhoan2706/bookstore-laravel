@@ -1,6 +1,6 @@
 <?php
 
-namespace Prueba\Http\Middleware;
+namespace Bookstore\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;

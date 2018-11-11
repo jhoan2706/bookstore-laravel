@@ -1,9 +1,9 @@
 <?php
 
-namespace Prueba\Http\Controllers;
+namespace Bookstore\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Prueba\Pokemon;
+use Bookstore\Pokemon;
 
 class PokemonController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Prueba;
+namespace Bookstore;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,11 +10,11 @@ class Autor extends Model
 
     public function pais()
     {
-        return $this->belongsTo('Prueba\Pais');
+        return $this->belongsTo('Bookstore\Pais');
     }
     public function libros()
     {
-        return $this->belongsToMany('Prueba\Libro');
+        return $this->belongsToMany('Bookstore\Libro');
     }
     public function scopeNombre($query, $nombre)
     {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Prueba\Http\Controllers;
+namespace Bookstore\Http\Controllers;
 
-use Prueba\Trainer;
+use Bookstore\Trainer;
 use Illuminate\Http\Request;
-use Prueba\Http\Requests\StoreTrainerRequest;
+use Bookstore\Http\Requests\StoreTrainerRequest;
 
 class TrainerController extends Controller {
 

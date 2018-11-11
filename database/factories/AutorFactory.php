@@ -2,8 +2,8 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(Prueba\Autor::class, function (Faker $faker) {
-	$paises=Prueba\Pais::pluck('id')->toArray();
+$factory->define(Bookstore\Autor::class, function (Faker $faker) {
+	$paises=Bookstore\Pais::pluck('id')->toArray();
     return [
         'nombre'=>$faker->name,
         'apellido'=>$faker->lastName,

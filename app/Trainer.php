@@ -1,6 +1,6 @@
 <?php
 
-namespace Prueba;
+namespace Bookstore;
 
 use Illuminate\Database\Eloquent\Model;
 

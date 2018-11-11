@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Prueba\User::class, function (Faker $faker) {
+$factory->define(Bookstore\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,

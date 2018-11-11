@@ -2,8 +2,8 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(Prueba\Libro::class, function (Faker $faker) {
-    $categorias = Prueba\CategoriaLibro::pluck('id')->toArray();
+$factory->define(Bookstore\Libro::class, function (Faker $faker) {
+    $categorias = Bookstore\CategoriaLibro::pluck('id')->toArray();
     return [
         'nombre' => $faker->name,
         'resumen' => $faker->paragraph(3, true),

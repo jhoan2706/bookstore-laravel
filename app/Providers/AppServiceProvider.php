@@ -1,6 +1,6 @@
 <?php
 
-namespace Prueba\Providers;
+namespace Bookstore\Providers;
 
 use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Support\ServiceProvider;
