@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Prueba\Autor;
-use Prueba\Libro;
-use Prueba\CategoriaLibro;
-use Prueba\Pais;
+use Bookstore\Autor;
+use Bookstore\Libro;
+use Bookstore\CategoriaLibro;
+use Bookstore\Pais;
 
 class AutorsTableSeeder extends Seeder
 {
@@ -25,14 +25,14 @@ class AutorsTableSeeder extends Seeder
 
         /* $autor = new Autor();
         $autor->nombre = "Autor";
-        $autor->apellido = "Prueba";
+        $autor->apellido = "Bookstore";
         $autor->fecha_nacimiento = "1985-03-12";
         $autor->pais_id = $pais3->id;
         $autor->save(); */
         $autor=Autor::where('nombre','Gonzalo')->first();
         $autor->libros()->attach($libro3);
-        //$autor->libros()->attach($libro_educacion);
-        //$autores=factory(Prueba\Autor::class,30)->create();
+        $autor->libros()->attach($libro1);
+        //$autores=factory(Bookstore\Autor::class,30)->create();
 
 
     }

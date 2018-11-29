@@ -1,12 +1,14 @@
 <?php
 
-namespace Bookstore\Http\Controllers;
+namespace Bookstore\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
+use Bookstore\Http\Controllers\Controller;
 use Bookstore\Autor;
 use Bookstore\Http\Requests\StoreAutorRequest;
 use Bookstore\Http\Resources\Autor as AutorResource;
 use Bookstore\Pais;
-use Illuminate\Http\Request;
+//use DB;
 
 class AutorController extends Controller
 {
@@ -16,7 +18,8 @@ class AutorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {$request->user()->authorizeRoles(['admin', 'user']);
+    {
+        //$request->user()->authorizeRoles(['admin', 'user']);
 
         $nombre = $request->input('nombre');
         $apellido = $request->input('apellido');
@@ -30,7 +33,7 @@ class AutorController extends Controller
             ->paginate(5)->appends(['nombre' => $nombre, 'apellido' => $apellido, 'pais' => $pais]); //appends me ayuda a que cuando se filtre, se mantenga el paginado al pasar de pagina
 
         //$autores=Autor::with('libros')->get()
-        return view('autores.index', compact('autores'));        
+        return view('admin.autores.index', compact('autores'));        
 
     }
     //FOR API ROUTES AND API EXAMPLE
@@ -74,7 +77,7 @@ class AutorController extends Controller
     public function create()
     {
         $paises = Pais::all();
-        return view('autores.create', ['paises' => $paises]);
+        return view('admin.autores.create', ['paises' => $paises]);
 
     }
 
@@ -132,7 +135,7 @@ class AutorController extends Controller
         $pais_autor = $autor->pais->nombre;
         $paises = Pais::all()->except($autor->pais_id);
         //return $pais_autor;
-        return view('autores.edit', compact('autor', 'paises', 'pais_autor'));
+        return view('admin.autores.edit', compact('autor', 'paises', 'pais_autor'));
     }
 
     /**
@@ -154,7 +157,7 @@ class AutorController extends Controller
             $autor->foto_dir = $name;
         }
         $autor->save();
-        return redirect()->route('autores.index')->with('status', 'Autor updated successfully');
+        return redirect()->route('autores.index')->with('status', 'Autor editado correctamente');
 
     }
 
@@ -167,7 +170,8 @@ class AutorController extends Controller
     public function destroy($id)
     {
         $autor = Autor::find($id);
+        $autor->libros()->detach();
         $autor->delete();
-        return redirect()->route('autores.index')->with('info', 'Autor has been deleted');
+        return redirect()->route('autores.index')->with('info', 'Autor borrado correctamente');
     }
 }

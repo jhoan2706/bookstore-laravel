@@ -5,7 +5,8 @@
   <div class="col">
     <h2>Autores</h2>
     <a href="{{route('autores.create')}}" class="btn btn-info mb-2">Agregar nuevo</a>
-    <form class="form-inline mb-3" action="/autores" method="GET">
+    <form class="form-inline mb-3"
+      action="/admin/autores" method="GET">
       {{ csrf_field() }}
       <input class="form-control mr-sm-2" type="search" name="nombre" placeholder="Nombre" aria-label="Search" value="">
       <input class="form-control mr-sm-2" type="search" name="apellido" placeholder="Apellido" aria-label="Search">
@@ -37,9 +38,10 @@
             {{-- componente independiente,se puede llamar desde donde sea(solo "ver mas") --}}
             <show-object-btn object='{{$autor}}'></show-object-btn>
           </td>
-          <td><a href="/autores/{{$autor->id}}/edit" class="btn btn-info">Editar</a></td>
+          <td><a href="/admin/autores/{{$autor->id}}/edit" class="btn btn-info">Editar</a></td>
           <td>
-            <form action="{{action('AutorController@destroy',$autor->id)}}" method="POST">
+            
+            <form action="{{action('Admin\AutorController@destroy',$autor->id)}}" method="POST">
               {{csrf_field()}}
               <input type="hidden" name="_method" value="DELETE">
               <button type="submit" class="btn btn-danger">Eliminar</button>

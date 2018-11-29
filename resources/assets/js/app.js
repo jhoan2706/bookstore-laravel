@@ -21,6 +21,7 @@ Vue.component('create-form-pokemon', require('./components/CreatePokemonComponen
 Vue.component('add-pokemon-btn', require('./components/AddPokemonComponent.vue'));
 Vue.component('show-object-btn', require('./components/BtnShowObjectComponent.vue'));
 Vue.component('show-autor-modal', require('./components/ShowAutorComponent.vue'));
+Vue.component('libros-component', require('./components/LibrosComponent.vue'));
 
 const app = new Vue({
     el: '#app'

@@ -28,10 +28,30 @@ return "Hola " . $name . " " . $last_name;
 
 //Para el TRainerCOntroller resource
 Route::resource('trainers', 'TrainerController');
-Route::resource('autores', 'AutorController');
 
-Route::resource('libros', 'LibroController');
+//Rutas del admin
+/* Route::group(['middleware' => 'admin'], function () {
+    Route::resource('/admin/admin', 'Admin\AdminController');
+    Route::resource('/admin/autores', 'Admin\AutorController');
+    Route::resource('/admin/libros', 'Admin\LibroController');
+}); */
+
+/* 
+Podemos continuar añadiendo rutas a este grupo, y todas ellas:
+Estarán validadas por el middlware admin.
+Tendrán como prefijo /admin.
+Sus controladores respectivos se encontrarán ubicados en App\Http\Controllers\Admin. */
+Route::group([
+    'middleware' => 'admin',
+    'prefix' => 'admin',
+    'namespace' => 'Admin',
+], function () {
+    Route::resource('/admin', 'AdminController');
+    Route::resource('/autores', 'AutorController');
+    Route::resource('/libros', 'LibroController');
+});
+
 Auth::routes();
-
+//
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('pokemons', 'PokemonController');

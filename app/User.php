@@ -12,15 +12,22 @@ class User extends Authenticatable
     public function roles(){
         return $this->belongsToMany('Bookstore\Role');
     }
+    //modificarlo por la relacion muchos a muchos
     public function isAdmin()
     {
-        if ($this->role=='admin') {
+        if ($this->roles()->where('name','admin')->first()){
             return true;
         }
         return false;
     }
+    /* public function isUser()
+    {
+        if ($this->roles()->where('name','user')->first()) {
+            return true;
+        }
+    } */
 
-    
+
     public function authorizeRoles($roles) {
         if($this->hasAnyRole($roles)){
             return true;

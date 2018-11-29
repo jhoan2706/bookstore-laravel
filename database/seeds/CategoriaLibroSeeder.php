@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Prueba\CategoriaLibro;
+use Bookstore\CategoriaLibro;
 
 class CategoriaLibroSeeder extends Seeder
 {

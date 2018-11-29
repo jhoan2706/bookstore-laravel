@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Prueba\Role;
+use Bookstore\Role;
 
 class RoleTableSeeder extends Seeder
 {

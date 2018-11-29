@@ -1,10 +1,10 @@
 <?php
 
-namespace Bookstore\Http\Controllers;
+namespace Bookstore\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use Bookstore\Http\Controllers\Controller;
 use Bookstore\Libro;
-use Bookstore\CategoriaLibro;
+use Illuminate\Http\Request;
 
 class LibroController extends Controller
 {
@@ -14,21 +14,30 @@ class LibroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //listar los libros de la categoria Arte
 
         /* $categoria = CategoriaLibro::where('descripcion','Arte')->get();
         $libros_categoria=CategoriaLibro::find($categoria[0]->id)->libros;
         return $libros_categoria; */
+        if ($request->ajax()) {
+            $libros = Libro::with('categoria_libro')->paginate(8);
+            return [
+                'pagination' => [
+                    'total' => $libros->total(),
+                    'per_page' => $libros->perPage(),
+                    'current_page' => $libros->currentPage(),
+                    'last_page' => $libros->lastPage(),
+                    'from' => $libros->firstItem(),
+                    'to' => $libros->lastItem(),
+                ],
+                'libros' => $libros,
+            ];
+            //return response()->json($response);
+        }
+        return view('admin.libros.index');
 
-        $libros=Libro::paginate(6);
-        return view('libros.index',compact('libros'));
-        /* foreach ($libros as $libro) {
-            echo "Nombre Libro: ".$libro->nombre."------";
-            echo "Categoria Libro: ".$libro->categoria_libro->descripcion;
-            echo "<br>";
-        } */
     }
 
     /**
@@ -63,7 +72,7 @@ class LibroController extends Controller
     public function show($id)
     {
         $libro = Libro::find($id);
-        return view('libros.show', compact('libro'));
+        return view('admin.libros.show', compact('libro'));
     }
 
     /**
@@ -75,7 +84,7 @@ class LibroController extends Controller
     public function edit($id)
     {
         $libro = Libro::find($id);
-        return view('libros.edit', compact('libro'));
+        return view('admin.libros.edit', compact('libro'));
     }
 
     /**

@@ -4,7 +4,7 @@ namespace Bookstore\Http\Controllers\Auth;
 
 use Bookstore\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Auth;
 class LoginController extends Controller
 {
     /*
@@ -25,8 +25,16 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/trainers';
-
+    //protected $redirectTo = '/trainers';
+    protected function authenticated()
+    {
+        if (Auth::User()->isAdmin()) {
+            return redirect('/admin/admin');
+        }
+        else{
+            return redirect('/');
+        }
+    }
     /**
      * Create a new controller instance.
      *
@@ -36,13 +44,5 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    protected function authenticated()
-    {
-        if (Auth::User()->isAdmin()) {
-            return redirect('/admin');
-        }
-        else{
-            return redirect('/');
-        }
-    }
+    
 }

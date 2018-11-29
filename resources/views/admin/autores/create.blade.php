@@ -5,7 +5,7 @@
   <div class="col-6">
   @include('common.errors')
     <h2>Agregar Autor</h2>
-    <form class="" action="/autores" method="post" enctype="multipart/form-data">
+    <form class="" action="/admin/autores" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       <div class="form-group">
         <label for="nombre">Nombre</label>

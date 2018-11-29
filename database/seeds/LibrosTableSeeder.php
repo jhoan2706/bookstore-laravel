@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Prueba\Libro;
-use Prueba\CategoriaLibro;
+use Bookstore\Libro;
+use Bookstore\CategoriaLibro;
 
 class LibrosTableSeeder extends Seeder
 {
@@ -13,6 +13,6 @@ class LibrosTableSeeder extends Seeder
      */
     public function run()
     {
-        $libros = factory(Prueba\Libro::class, 40)->create();
+        $libros = factory(Bookstore\Libro::class, 40)->create();
     }
 }
