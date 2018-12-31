@@ -31,12 +31,12 @@ Route::resource('trainers', 'TrainerController');
 
 //Rutas del admin
 /* Route::group(['middleware' => 'admin'], function () {
-    Route::resource('/admin/admin', 'Admin\AdminController');
-    Route::resource('/admin/autores', 'Admin\AutorController');
-    Route::resource('/admin/libros', 'Admin\LibroController');
+Route::resource('/admin/admin', 'Admin\AdminController');
+Route::resource('/admin/autores', 'Admin\AutorController');
+Route::resource('/admin/libros', 'Admin\LibroController');
 }); */
 
-/* 
+/*
 Podemos continuar añadiendo rutas a este grupo, y todas ellas:
 Estarán validadas por el middlware admin.
 Tendrán como prefijo /admin.
@@ -46,6 +46,7 @@ Route::group([
     'prefix' => 'admin',
     'namespace' => 'Admin',
 ], function () {
+    Route::get('/libros/load_categories', 'LibroController@load_categories');
     Route::resource('/admin', 'AdminController');
     Route::resource('/autores', 'AutorController');
     Route::resource('/libros', 'LibroController');

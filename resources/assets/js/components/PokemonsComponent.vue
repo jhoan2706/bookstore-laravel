@@ -35,7 +35,7 @@ export default {
   mounted() {
     /*console.log(this.pokemons);*/
     axios
-      .get('http://localhost/pokemons')
+      .get('/pokemons')
       .then((res) => {
         this.pokemons = res.data
         this.loading = false

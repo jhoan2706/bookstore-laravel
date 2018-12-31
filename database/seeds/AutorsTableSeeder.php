@@ -29,10 +29,10 @@ class AutorsTableSeeder extends Seeder
         $autor->fecha_nacimiento = "1985-03-12";
         $autor->pais_id = $pais3->id;
         $autor->save(); */
-        $autor=Autor::where('nombre','Gonzalo')->first();
+        /* $autor=Autor::where('nombre','Gonzalo')->first();
         $autor->libros()->attach($libro3);
-        $autor->libros()->attach($libro1);
-        //$autores=factory(Bookstore\Autor::class,30)->create();
+        $autor->libros()->attach($libro1); */
+        $autores=factory(Bookstore\Autor::class,30)->create();
 
 
     }
