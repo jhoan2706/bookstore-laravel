@@ -48,6 +48,9 @@
                 <a href class="btn btn-sm btn-info float-right mr-1" title="Ver Detalle">
                   <i class="fas fa-info-circle"></i>
                 </a>
+                <!-- <router-link to="/vue/view/{{book.id}}"><a href class="btn btn-sm btn-info float-right mr-1" title="Ver Detalle">
+                  <i class="fas fa-info-circle"></i>
+                </a></router-link> -->
                 <div class="price-wrap h5">
                   <span class="price-new">{{book.precio}}</span>
                   <del class="price-old">1980</del>
@@ -87,6 +90,10 @@ export default {
       this.data = data[0];
       this.getBooks();
     });
+    EventBus.$on("book_added", data => {            
+      this.resetData();      
+      this.getBooks();      
+    });
   },
   methods: {
     getBooks(page = 1) {
@@ -106,6 +113,13 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    resetData(){
+      this.data.book_name=null;
+      this.data.book_category=null;
+      this.data.book_price1=null;
+      this.data.book_price2=null;
+      this.data.book_year=null;
     }
   }
 };

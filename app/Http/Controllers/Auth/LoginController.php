@@ -28,6 +28,11 @@ class LoginController extends Controller
     //protected $redirectTo = '/trainers';
     protected function authenticated()
     {
+        /* $user=Auth::user();
+        if($user->isAdmin()){
+            return $user;
+        }
+        return "Not administratos user in database"; */
         if (Auth::User()->isAdmin()) {
             return redirect('/admin/admin');
         }

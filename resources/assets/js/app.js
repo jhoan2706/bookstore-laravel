@@ -23,11 +23,11 @@ Vue.component('create-form-pokemon', require('./components/CreatePokemonComponen
 Vue.component('add-pokemon-btn', require('./components/AddPokemonComponent.vue'));
 Vue.component('show-object-btn', require('./components/BtnShowObjectComponent.vue'));
 Vue.component('show-autor-modal', require('./components/ShowAutorComponent.vue'));
-Vue.component('libros-component', require('./components/LibrosComponent.vue'));
 
 //libros
-Vue.component('add-book', require('./components/libros/add.vue'));
 Vue.component('index-books', require('./components/libros/index.vue'));
+Vue.component('btn-add-book', require('./components/libros/btn-add.vue'));
+Vue.component('add-form-modal', require('./components/libros/add-book-modal.vue'));
 
 const app = new Vue({
     el: '#app'

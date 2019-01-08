@@ -24,20 +24,13 @@ class LibroController extends Controller
             $precio2 = $request->input('book_price2');
             $fecha = $request->input('book_year');
 
-            $libros = Libro::with(array('categoria_libro' => function ($query) {
-                $query->orderBy('id', 'DESC');
-            }))->titulo($titulo)
-                ->categoria($categoria_id)
-                ->precio($precio1, $precio2)
-                ->fecha($fecha)
-                ->paginate(6);
-
-            /* $libros = Libro::orderBy('id', 'DESC')
+            $libros = Libro::with('categoria_libro')
+                ->orderBy('id','DESC')
                 ->titulo($titulo)
                 ->categoria($categoria_id)
                 ->precio($precio1, $precio2)
                 ->fecha($fecha)
-                ->paginate(6); */
+                ->paginate(6);
 
             return $libros;
         }
@@ -70,9 +63,29 @@ class LibroController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['nombre' => 'required', 'resumen' => 'required', 'npagina' => 'required', 'edicion' => 'required', 'autor' => 'required', 'npagina' => 'required', 'precio' => 'required']);
-        Libro::create($request->all());
-        return redirect()->route('libros.index')->with('success', 'Registro creado satisfactoriamente');
+
+        if ($request->ajax()) {
+            $book = new Libro();
+            $book->nombre = $request->input("book_name");
+            $book->resumen = $request->input("book_desc");
+            $book->n_paginas = $request->input("book_pages");
+            $book->precio = $request->input("book_price");
+            $book->fecha_publicacion = $request->input("book_date");
+            $book->status = $request->input("book_status");
+            $book->stock = $request->input("book_stock");
+            $book->categoria_libro_id = $request->input("book_category");
+            if ($book->save()) {
+                return response()->json([
+                    'message' => "Libro creado satisfactoriamente!",
+                    'libro' => $book,
+                ], 200);
+            }
+            return response()->json([
+                'status' => "error",
+                'message' => "An error occurred!",
+            ], 500);
+
+        }
     }
 
     /**
@@ -84,7 +97,9 @@ class LibroController extends Controller
     public function show($id)
     {
         $libro = Libro::find($id);
-        return view('admin.libros.show', compact('libro'));
+        return response()->json($libro);
+        //return view('admin.libros.show', compact('libro'));
+
     }
 
     /**
