@@ -13,21 +13,6 @@
     <!-- librerias js-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
-    
-
-        {{-- <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script> --}}
-   {{--  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script> --}}
 
     <!-- Styles -->
     <link href="{{ asset('css/ui.css') }}" rel="stylesheet">
@@ -36,8 +21,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between mb-2">
+    <nav class="navbar navbar-expand-lg navbar-light justify-content-between mb-2 py-md-3" style="background-color: #265C7F;">
         <a class="navbar-brand" href="{{ url('/admin/admin') }}">
+            <img src="/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
                 {{ config('app.name', 'Bookstore') }}
             </a>
 
@@ -74,13 +60,7 @@
                         </form>
                     </div>
                 </li>                
-                @else
-                <li class="nav-item item-active">
-                    <a href="{{route('trainers.index')}}" class="nav-link">Trainers</a>
-                </li>
-                <li class="nav-item ">
-                    <a href="{{route('pokemons.index')}}" class="nav-link">Pokemons</a>
-                </li>
+                @else                
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" role="button" aria-expanded="false"
                         aria-haspopup="true">
@@ -100,7 +80,7 @@
             </ul>
             <form class="form-inline">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
     </nav>

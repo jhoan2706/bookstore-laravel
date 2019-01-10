@@ -97,8 +97,8 @@ class LibroController extends Controller
     public function show($id)
     {
         $libro = Libro::find($id);
-        return response()->json($libro);
-        //return view('admin.libros.show', compact('libro'));
+        //return response()->json($libro);
+        return view('admin.libros.view', compact('libro'));
 
     }
 

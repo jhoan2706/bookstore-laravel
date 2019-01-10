@@ -12,30 +12,10 @@
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
-//Route::get('/User','UserController@index');
-//redireccionamiento
-//Route::redirect('/here', '/there', 301);
 
-//Nombres para rutas
-//Route::get('user/profile', 'UserController@showProfile')->name('profile');
-
-//Parametro por default
-/* Route::get('/name/{name}/lastname/{last_name?}', function ($name, $last_name = null) {
-return "Hola " . $name . " " . $last_name;
-}); */
-
-//Para el TRainerCOntroller resource
-Route::resource('trainers', 'TrainerController');
-
-//Rutas del admin
-/* Route::group(['middleware' => 'admin'], function () {
-Route::resource('/admin/admin', 'Admin\AdminController');
-Route::resource('/admin/autores', 'Admin\AutorController');
-Route::resource('/admin/libros', 'Admin\LibroController');
-}); */
-
+//Route::resource('trainers', 'TrainerController');
 /*
 Podemos continuar añadiendo rutas a este grupo, y todas ellas:
 Estarán validadas por el middlware admin.
@@ -53,6 +33,5 @@ Route::group([
 });
 
 Auth::routes();
-//
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('pokemons', 'PokemonController');
+//Route::resource('pokemons', 'PokemonController');
