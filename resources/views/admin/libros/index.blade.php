@@ -8,6 +8,7 @@
   <btn-add-book></btn-add-book>
 </div>
 <hr>
+@include('common.success')
 <index-books></index-books>
 <add-form-modal></add-form-modal>
 

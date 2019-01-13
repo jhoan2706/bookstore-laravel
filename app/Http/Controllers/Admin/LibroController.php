@@ -2,9 +2,10 @@
 
 namespace Bookstore\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use Bookstore\Http\Controllers\Controller;
 use Bookstore\Libro;
-use Illuminate\Http\Request;
+use Bookstore\Http\Requests\StoreBookRequest;
 use Illuminate\Support\Facades\DB;
 
 class LibroController extends Controller
@@ -34,15 +35,19 @@ class LibroController extends Controller
 
             return $libros;
         }
-        return view('admin.libros.index');
-
-        //$libros = Libro::with('categoria_libro')->paginate(8);
+        return view('admin.libros.index');        
 
     }
     public function load_categories()
     {
-        $users = DB::table('categoria_libros')->select('id', 'descripcion')->get();
-        return $users;
+        $categories = DB::table('categoria_libros')->select('id', 'descripcion')->get();
+        return $categories;
+    }
+
+    public function load_editions()
+    {
+        $editions = DB::table('ediciones')->select('nombre')->get();
+        return $editions;
     }
 
     /**
@@ -74,6 +79,9 @@ class LibroController extends Controller
             $book->status = $request->input("book_status");
             $book->stock = $request->input("book_stock");
             $book->categoria_libro_id = $request->input("book_category");
+            $book->edicion=$request->input("edicion");
+            $book->formato=$request->input("formato");
+            $book->peso=$request->input("peso");
             if ($book->save()) {
                 return response()->json([
                     'message' => "Libro creado satisfactoriamente!",
@@ -96,8 +104,7 @@ class LibroController extends Controller
      */
     public function show($id)
     {
-        $libro = Libro::find($id);
-        //return response()->json($libro);
+        $libro = Libro::find($id);        
         return view('admin.libros.view', compact('libro'));
 
     }
@@ -111,7 +118,9 @@ class LibroController extends Controller
     public function edit($id)
     {
         $libro = Libro::find($id);
-        return view('admin.libros.edit', compact('libro'));
+        $categories=$this->load_categories();
+        $ediciones=$this->load_editions();
+        return view('admin.libros.edit', compact('libro','categories','ediciones'));
     }
 
     /**
@@ -121,10 +130,12 @@ class LibroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $this->validate($request, ['nombre' => 'required', 'resumen' => 'required', 'npagina' => 'required', 'edicion' => 'required', 'autor' => 'required', 'npagina' => 'required', 'precio' => 'required']);
-        Libro::find($id)->update($request->all());
+    public function update(StoreBookRequest $request, $id)
+    {        
+        $libro = Libro::find($id);
+        $libro->fill($request->all());
+        $libro->status=$request->status=="on"?true:false;
+        $libro->save();              
         return redirect()->route('libros.index')->with('success', 'Registro actualizado satisfactoriamente');
     }
 
@@ -137,7 +148,7 @@ class LibroController extends Controller
     public function destroy($id)
     {
         Libro::find($id)->delete();
-        return redirect()->route('libros.index')->with('success', 'Registro eliminado satisfactoriamente');
+        /* return redirect()->route('libros.index')->with('success', 'Registro eliminado satisfactoriamente'); */
     }
 
 }

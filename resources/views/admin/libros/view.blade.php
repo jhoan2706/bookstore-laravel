@@ -2,10 +2,22 @@
 @section('title','Info Libro') 
 @section('content')
 <div class="row">
-    <div class="col">
+    <div class="col-11">
         <h2 class="title-doc">Información Libro</h2>
+    </div>
+    <div class="col-1">
+        <div class="btn-group">
+            <a href="/admin/libros" class="btn btn-dark">Volver</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+
         <div class="card mt-3">
+
             <div class="row no-gutters">
+
                 <aside class="col-sm-4 border-right">
                     <article class="gallery-wrap">
                         <div class="img-big-wrap">
@@ -16,9 +28,12 @@
                     <!-- gallery-wrap .end// -->
                 </aside>
                 <aside class="col-sm-8">
+                    <a href="/admin/libros/{{$libro->id}}/edit" class="btn btn-warning float-right mr-1 mt-2" title="Editar Libro">
+                            <i class="fas fa-pencil-alt"></i>
+                           </a>
                     <article class="p-5">
                         <h3 class="title mb-3">{{$libro->nombre}}</h3>
-        
+
                         <div class="mb-3">
                             <var class="price h3 text-warning"> 
             <span class="currency">COL $</span><span class="num">{{$libro->precio}}</span>
@@ -34,7 +49,7 @@
                         <dl class="row">
                             <dt class="col-sm-3"># Páginas</dt>
                             <dd class="col-sm-9">{{$libro->n_paginas}}</dd>
-        
+
                             <dt class="col-sm-3">Estado</dt>
                             <dd class="col-sm-9">@if ($libro->status==1)
                                 <p>Activo</p>
@@ -43,12 +58,12 @@
                                 @endif</dd>
                             <dt class="col-sm-3">Categoría</dt>
                             <dd class="col-sm-9">{{$libro->categoria_libro->descripcion}}</dd>
-        
-                            <dt class="col-sm-3">Fecha publicacion</dt>
+
+                            <dt class="col-sm-3">Año publicación</dt>
                             <dd class="col-sm-9">{{$libro->fecha_publicacion}}</dd>
                         </dl>
                         <div class="rating-wrap">
-        
+
                             <ul class="rating-stars">
                                 <li style="width:80%" class="stars-active">
                                     <i class="fa fa-star"></i> <i class="fa fa-star"></i>
@@ -105,7 +120,7 @@
                         </div>
                         <!-- row.// -->
                         <hr>
-                        <a href="#" class="btn  btn-primary"> Buy now </a>
+                        <a href="#" class="btn  btn-dark"> Buy now </a>
                         <a href="#" class="btn  btn-outline-primary"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
                     </article>
                     <!-- card-body.// -->
@@ -116,12 +131,6 @@
         </div>
     </div>
 </div>
-<div class="row mt-3 mb-3">
-    <div class="col">
-        <div class="btn-group">
-            <a href="/admin/libros" class="btn btn-info">Volver</a>
-        </div>
-    </div>
-</div>
+
 <!-- card.// -->
 @endsection

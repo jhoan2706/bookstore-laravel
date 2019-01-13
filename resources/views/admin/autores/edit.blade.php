@@ -36,10 +36,10 @@
                 <label for="foto_dir">Foto</label>
                 <input type="file" name="foto_dir">
             </div>
-            <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+            <button type="submit" class="btn btn-dark mt-2">Guardar</button>
         </form>
         <div class="btn-group">
-            <a href="{{route('autores.index')}}" class="btn btn-info mt-2">Volver</a>
+            <a href="{{route('autores.index')}}" class="btn btn-dark mt-2">Volver</a>
         </div>
     </div>
 </div>

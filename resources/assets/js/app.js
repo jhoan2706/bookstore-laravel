@@ -17,10 +17,8 @@ window.Vue = require('vue');
 //laravel-vue-pagination
 Vue.component('pagination', require('laravel-vue-pagination'));
 //registro de un componente
-Vue.component('pokemons-component', require('./components/PokemonsComponent.vue'));
+//autor
 Vue.component('spinner', require('./components/Spinner.vue'));
-Vue.component('create-form-pokemon', require('./components/CreatePokemonComponent.vue'));
-Vue.component('add-pokemon-btn', require('./components/AddPokemonComponent.vue'));
 Vue.component('show-object-btn', require('./components/BtnShowObjectComponent.vue'));
 Vue.component('show-autor-modal', require('./components/ShowAutorComponent.vue'));
 

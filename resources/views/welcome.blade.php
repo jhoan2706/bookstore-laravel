@@ -136,7 +136,7 @@
                         <hr class="my-4">
                         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
                         <p class="lead">
-                            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                            <a class="btn btn-dark btn-lg" href="#" role="button">Learn more</a>
                         </p>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Special title treatment</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="#" class="btn btn-dark">Go somewhere</a>
                         </div>
                     </div>
                 </div>
@@ -158,7 +158,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Special title treatment</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="#" class="btn btn-dark">Go somewhere</a>
                         </div>
                     </div>
                 </div>

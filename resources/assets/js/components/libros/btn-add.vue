@@ -2,7 +2,7 @@
   <div class="col-6">
     <div class="dropdown">
       <button
-        class="btn btn-info dropdown-toggle"
+        class="btn btn-outline-dark dropdown-toggle"
         type="button"
         id="dropdownMenuButton"
         data-toggle="dropdown"

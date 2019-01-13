@@ -4,3 +4,20 @@
 @import "variables";
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
+.navbar-light .navbar-brand {
+    color: rgb(255, 255, 255);
+  }
+  
+  .navbar-light .navbar-brand:hover,
+  .navbar-light .navbar-brand:focus {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .navbar-light .navbar-nav .nav-link {
+    color: rgb(255, 255, 255);
+  }
+
+  .page-item.active .page-link {
+    background-color: #343a40;
+    border-color: #343a40;
+}

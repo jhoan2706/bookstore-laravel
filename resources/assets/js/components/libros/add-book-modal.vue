@@ -74,13 +74,12 @@
             </div>
             <div class="form-row">
               <div class="form-group col-md-4">
-                <label for>Fecha publicación</label>
+                <label for>Año publicación</label>
                 <input
-                  type="date"
+                  type="number"
                   v-model="data.book_date"
                   class="form-control"
-                  min="0000-01-01"
-                  max="2020-06-06"
+                  min="1800" max="2025"
                 >
               </div>
               <div class="form-group col-md-4">
@@ -115,7 +114,32 @@
                   placeholder="# Stock"
                 >
               </div>
-              <div class="form-group col-md-3">
+              <div class="form-group col-md-2">
+                <label for>Peso (kg)</label>
+                <input
+                  type="text"
+                  v-model="data.peso"
+                  class="form-control"
+                  placeholder="# Peso"
+                >
+              </div>
+              <div class="form-group col-md-2">
+                <label for>Edicion</label>
+                <select class="form-control" v-model="data.edicion">
+                  <option value="Primera" selected>Primera</option>
+                  <option value="Segunda">Segunda</option>
+                  <option value="Tercera">Tercera</option>
+                  <option value="Cuarta">Cuarta</option>
+                </select>
+              </div>
+              <div class="form-group col-md-2">
+                <label for>Formato</label>
+                <select class="form-control" v-model="data.formato">
+                  <option :value="data.formato" selected>{{data.formato}}</option>  
+                </select>
+              </div>
+
+              <div class="form-group col-md-2">
                 <div class="form-check">
                   <label for>Estado</label>
                   <br>
@@ -157,10 +181,13 @@ export default {
         book_date: null,
         book_category: "",
         book_status: false,
-        book_stock: null
+        book_stock: null,
+        edicion:"Primera",
+        formato:"Libro",
+        peso:null
       },
       errors: [],
-      book_categories: []
+      book_categories: [],
     };
   },
   created() {
@@ -173,11 +200,11 @@ export default {
           .post("/admin/libros", this.data)
           .then(response => {
             /* console.log(response); */
-            $('#addBookModal').modal('hide'); 
-            $('.modal-backdrop').remove();
+            $("#addBookModal").modal("hide");
+            $(".modal-backdrop").remove();
             this.resetData();
             //emitir evento para actualizar asyncronamente los libros
-           EventBus.$emit("book_added",true);
+            EventBus.$emit("book_added", true);
           })
           .catch(err => {
             console.log(err);
@@ -207,12 +234,16 @@ export default {
         this.errors.push("Error en el campo '# Stock'.");
         validate = false;
       }
+      if (isNaN(this.data.peso)) {
+        this.errors.push("Error en el campo '# Peso'.");
+        validate = false;
+      }
       if (this.data.book_category == "") {
         this.errors.push("Seleccione una categoría para el libro.");
         validate = false;
       }
       if (this.data.book_date == null) {
-        this.errors.push("Ingrese 'Fecha de publicación' del libro.");
+        this.errors.push("Error en 'Año de publicación' del libro.");
         validate = false;
       }
       return validate;

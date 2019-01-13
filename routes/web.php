@@ -26,7 +26,7 @@ Route::group([
     'prefix' => 'admin',
     'namespace' => 'Admin',
 ], function () {
-    Route::get('/libros/load_categories', 'LibroController@load_categories');
+    Route::get('/libros/load_categories', 'LibroController@load_categories');    
     Route::resource('/admin', 'AdminController');
     Route::resource('/autores', 'AutorController');
     Route::resource('/libros', 'LibroController');

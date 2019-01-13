@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light justify-content-between mb-2 py-md-3" style="background-color: #265C7F;">
+    <nav class="navbar navbar-expand-lg navbar-light justify-content-between mb-2 py-md-3" style="background-color: #00556E;">
         <a class="navbar-brand" href="{{ url('/admin/admin') }}">
             <img src="/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
                 {{ config('app.name', 'Bookstore') }}
@@ -87,6 +87,37 @@
     <div id="app" class="container">
         @yield('content')
     </div>
+    <!-- Footer -->
+<footer class="page-footer font-small blue pt-4 mt-5" style="background-color: #00556E;color: rgb(255, 255, 255);">
+    <div class="container-fluid text-center text-md-left">
+      <div class="row">
+        <div class="col-md-6 mt-md-0 mt-3">
+          <h5 class="text-uppercase">Footer Content</h5>
+          <p>Here you can use rows and columns here to organize your footer content.</p>
+        </div>
+        <hr class="clearfix w-100 d-md-none pb-3">
+        <div class="col-md-3 mb-md-0 mb-3">
+            <h5 class="text-uppercase">Links</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#" class="badge badge-light">Link</a>
+              </li>              
+            </ul>
+          </div>
+          <div class="col-md-3 mb-md-0 mb-3">
+            <h5 class="text-uppercase">Links</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#" class="badge badge-light">Link</a>
+              </li>             
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+      <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+    </div>
+  </footer>
 
     <!-- Scripts -->
    {{--  <script src="{{ asset('js/bootstrap.js') }}"></script> --}}

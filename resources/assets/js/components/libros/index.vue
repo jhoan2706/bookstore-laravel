@@ -13,49 +13,42 @@
                 </a>
               </div>
               <figcaption class="info-wrap">
-                <h4 class="title">{{book.nombre}}</h4>
+                <h5 class="title">{{book.nombre}}</h5>
                 <p class="desc">
                   <b>Categoria:</b>
                   <small>{{book.categoria_libro.descripcion}}</small>
                 </p>
                 <p class="desc">
-                  <b>Fecha:</b>
+                  <b>Año publicación:</b>
                   <small>{{book.fecha_publicacion}}</small>
                 </p>
-                <div class="rating-wrap">
-                  <ul class="rating-stars">
-                    <li style="width:80%" class="stars-active">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </li>
-                    <li>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </li>
-                  </ul>
-                  <div class="label-rating">132 reviews</div>
-                  <div class="label-rating">154 orders</div>
-                </div>
-              </figcaption>
-              <div class="bottom-wrap">                
-                <a href class="btn btn-sm btn-primary float-right" title="Añadir al carrito">
+                <button type="button" class="btn btn-dark btn-block">
                   <i class="fas fa-cart-plus"></i>
+                  <b>Añadir al carrito</b>
+                </button>
+              </figcaption>
+              <div class="bottom-wrap">
+                <button
+                  href="#"
+                  class="btn btn-danger btn-sm float-right mr-1"
+                  @click="deleteItem(book.id)"
+                  title="Eliminar"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+                <a
+                  :href="link_detail+book.id+'/edit'"
+                  class="btn btn-sm btn-warning float-right mr-1"
+                  title="Editar"
+                >
+                  <i class="fas fa-pencil-alt"></i>
                 </a>
                 <a
                   :href="link_detail+book.id"
-                  class="btn btn-sm btn-info float-right mr-1"
-                  title="Ver Detalle"
+                  class="btn btn-sm btn-dark float-right mr-1"
+                  title="Detalle"
                 >
                   <i class="fas fa-info-circle"></i>
-                </a>
-                <a :href="link_detail+book.id+'/edit'" class="btn btn-sm btn-warning float-right mr-1" title="Editar Libro">
-                 <i class="fas fa-pencil-alt"></i>
                 </a>
 
                 <!-- <router-link to="/vue/view/{{book.id}}"><a href class="btn btn-sm btn-info float-right mr-1" title="Ver Detalle">
@@ -89,7 +82,7 @@ export default {
         book_price2: null,
         book_year: null
       },
-      link_detail: "/admin/libros/",
+      link_detail: "/admin/libros/"
     };
   },
   components: {
@@ -107,6 +100,19 @@ export default {
     });
   },
   methods: {
+    deleteItem(id) {
+      var r = confirm("Está seguro de eliminar este libro?");
+      if (r) {
+        axios
+          .delete("/admin/libros/" + id)
+          .then(response => {
+            this.getBooks();
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+    },
     getBooks(page = 1) {
       axios
         .get("/admin/libros?page=" + page, {

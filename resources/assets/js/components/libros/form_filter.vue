@@ -82,7 +82,7 @@
       <p :class="[error_styles.back]" v-if="error_mss.year.length>0">
         <strong>{{error_mss.year}}</strong>
       </p>
-      <button type="button" class="btn btn-info btn-sm" @click="cleanForm">
+      <button type="button" class="btn btn-outline-dark btn-sm" @click="cleanForm">
         <i class="fas fa-sync-alt"></i>
         Reiniciar Filtros
       </button>

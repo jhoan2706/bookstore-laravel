@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col">
     <h2>Autores</h2>
-    <a href="{{route('autores.create')}}" class="btn btn-info mb-2">Agregar nuevo</a>
+    <a href="{{route('autores.create')}}" class="btn btn-dark mb-2">Agregar nuevo</a>
     <form class="form-inline mb-3"
       action="/admin/autores" method="GET">
       {{ csrf_field() }}
@@ -38,7 +38,7 @@
             {{-- componente independiente,se puede llamar desde donde sea(solo "ver mas") --}}
             <show-object-btn object='{{$autor}}'></show-object-btn>
           </td>
-          <td><a href="/admin/autores/{{$autor->id}}/edit" class="btn btn-info">Editar</a></td>
+          <td><a href="/admin/autores/{{$autor->id}}/edit" class="btn btn-dark">Editar</a></td>
           <td>
             
             <form action="{{action('Admin\AutorController@destroy',$autor->id)}}" method="POST">
