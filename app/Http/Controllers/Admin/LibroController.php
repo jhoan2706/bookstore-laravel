@@ -2,10 +2,10 @@
 
 namespace Bookstore\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use Bookstore\Http\Controllers\Controller;
-use Bookstore\Libro;
 use Bookstore\Http\Requests\StoreBookRequest;
+use Bookstore\Libro;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class LibroController extends Controller
@@ -26,7 +26,7 @@ class LibroController extends Controller
             $fecha = $request->input('book_year');
 
             $libros = Libro::with('categoria_libro')
-                ->orderBy('id','DESC')
+                ->orderBy('id', 'DESC')
                 ->titulo($titulo)
                 ->categoria($categoria_id)
                 ->precio($precio1, $precio2)
@@ -35,7 +35,7 @@ class LibroController extends Controller
 
             return $libros;
         }
-        return view('admin.libros.index');        
+        return view('admin.libros.index');
 
     }
     public function load_categories()
@@ -49,6 +49,14 @@ class LibroController extends Controller
         $editions = DB::table('ediciones')->select('nombre')->get();
         return $editions;
     }
+    public function validateBook($isbn)
+    {
+        $libro = DB::table('libros')->select('ISBN')->where('ISBN', $isbn)->get();        
+        if (empty($libro[0])) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -57,7 +65,9 @@ class LibroController extends Controller
      */
     public function create()
     {
-        return view('admin.libros.create');
+        $categories = $this->load_categories();
+        $ediciones = $this->load_editions();
+        return view('admin.libros.create', compact('libro', 'categories', 'ediciones'));
     }
 
     /**
@@ -66,34 +76,23 @@ class LibroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
-
-        if ($request->ajax()) {
-            $book = new Libro();
-            $book->nombre = $request->input("book_name");
-            $book->resumen = $request->input("book_desc");
-            $book->n_paginas = $request->input("book_pages");
-            $book->precio = $request->input("book_price");
-            $book->fecha_publicacion = $request->input("book_date");
-            $book->status = $request->input("book_status");
-            $book->stock = $request->input("book_stock");
-            $book->categoria_libro_id = $request->input("book_category");
-            $book->edicion=$request->input("edicion");
-            $book->formato=$request->input("formato");
-            $book->peso=$request->input("peso");
-            if ($book->save()) {
-                return response()->json([
-                    'message' => "Libro creado satisfactoriamente!",
-                    'libro' => $book,
-                ], 200);
-            }
-            return response()->json([
-                'status' => "error",
-                'message' => "An error occurred!",
-            ], 500);
-
+        $libro = new Libro();
+        $libro->fill($request->all());
+        $libro->status = $request->status == "on" ? true : false;
+        if ($request->hasFile('foto_dir')) {
+            $image = $request->file('foto_dir');
+            $name = time() . $image->getClientOriginalName();
+            $image->move(public_path() . '/images/books/', $name);
+            $libro->foto_dir = $name;
         }
+        if ($this->validateBook($request->ISBN)) {
+            if ($libro->save()) {
+                return redirect()->route('libros.index')->with('status', 'Libro guardado satisfactoriamente');
+            }
+        }
+        return redirect()->route('libros.index')->with('danger', 'El libro no pudo ser guardado, por favor verifique.');
     }
 
     /**
@@ -104,7 +103,7 @@ class LibroController extends Controller
      */
     public function show($id)
     {
-        $libro = Libro::find($id);        
+        $libro = Libro::find($id);
         return view('admin.libros.view', compact('libro'));
 
     }
@@ -118,9 +117,9 @@ class LibroController extends Controller
     public function edit($id)
     {
         $libro = Libro::find($id);
-        $categories=$this->load_categories();
-        $ediciones=$this->load_editions();
-        return view('admin.libros.edit', compact('libro','categories','ediciones'));
+        $categories = $this->load_categories();
+        $ediciones = $this->load_editions();
+        return view('admin.libros.edit', compact('libro', 'categories', 'ediciones'));
     }
 
     /**
@@ -131,12 +130,23 @@ class LibroController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(StoreBookRequest $request, $id)
-    {        
+    {
         $libro = Libro::find($id);
         $libro->fill($request->all());
-        $libro->status=$request->status=="on"?true:false;
-        $libro->save();              
-        return redirect()->route('libros.index')->with('success', 'Registro actualizado satisfactoriamente');
+        $libro->status = $request->status == "on" ? true : false;
+        if ($request->hasFile('foto_dir')) {
+            $image = $request->file('foto_dir');
+            $name = time() . $image->getClientOriginalName();
+            $image->move(public_path() . '/images/books/', $name);
+            $libro->foto_dir = $name;
+        }
+        if ($this->validateBook($request->ISBN)) {
+            if ($libro->save()) {
+                return redirect()->route('libros.index')->with('status', 'Libro actualizado satisfactoriamente');
+            }
+        }
+        return redirect()->route('libros.index')->with('danger', 'El libro no pudo ser actualizado, por favor verifique.');
+
     }
 
     /**

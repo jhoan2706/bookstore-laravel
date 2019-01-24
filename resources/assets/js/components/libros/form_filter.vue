@@ -1,6 +1,6 @@
 <template>
   <div class="col-3">
-    <h5>Filtros de busqueda</h5>
+    <h5>Filtros de búsqueda</h5>
     <form method="GET" action="/admin/libros" @submit.prevent="validateForm">
       <!-- nombre libro -->
       <div class="form-group">

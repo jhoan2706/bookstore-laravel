@@ -24,12 +24,14 @@ class StoreBookRequest extends FormRequest
     public function rules()
     {
         return [
+            'ISBN'=>'required|max:191',
             'nombre'=>'required|max:255',
             'n_paginas'=>'required|numeric',
             'precio'=>'required|numeric',
             'fecha_publicacion'=>'numeric|required',      
             'stock'=>'required|numeric',
-            'peso'=>'nullable|numeric'
+            'peso'=>'nullable|numeric',
+            'foto_dir'=>'mimes:jpeg,bmp,png'
         ];
     }
 }

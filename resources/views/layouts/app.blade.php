@@ -16,7 +16,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/ui.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">  
+
 
 </head>
 
@@ -59,8 +60,8 @@
                             {{ csrf_field() }}
                         </form>
                     </div>
-                </li>                
-                @else                
+                </li>
+                @else
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" role="button" aria-expanded="false"
                         aria-haspopup="true">
@@ -88,40 +89,43 @@
         @yield('content')
     </div>
     <!-- Footer -->
-<footer class="page-footer font-small blue pt-4 mt-5" style="background-color: #00556E;color: rgb(255, 255, 255);">
-    <div class="container-fluid text-center text-md-left">
-      <div class="row">
-        <div class="col-md-6 mt-md-0 mt-3">
-          <h5 class="text-uppercase">Footer Content</h5>
-          <p>Here you can use rows and columns here to organize your footer content.</p>
+    <footer class="page-footer font-small blue pt-4 mt-5" style="background-color: #00556E;color: rgb(255, 255, 255);">
+        <div class="container-fluid text-center text-md-left">
+            <div class="row">
+                <div class="col-md-6 mt-md-0 mt-3">
+                    <h5 class="text-uppercase">Footer Content</h5>
+                    <p>Here you can use rows and columns here to organize your footer content.</p>
+                </div>
+                <hr class="clearfix w-100 d-md-none pb-3">
+                <div class="col-md-3 mb-md-0 mb-3">
+                    <h5 class="text-uppercase">Links</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#" class="badge badge-light">Link</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-md-0 mb-3">
+                    <h5 class="text-uppercase">Links</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#" class="badge badge-light">Link</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <hr class="clearfix w-100 d-md-none pb-3">
-        <div class="col-md-3 mb-md-0 mb-3">
-            <h5 class="text-uppercase">Links</h5>
-            <ul class="list-unstyled">
-              <li>
-                <a href="#" class="badge badge-light">Link</a>
-              </li>              
-            </ul>
-          </div>
-          <div class="col-md-3 mb-md-0 mb-3">
-            <h5 class="text-uppercase">Links</h5>
-            <ul class="list-unstyled">
-              <li>
-                <a href="#" class="badge badge-light">Link</a>
-              </li>             
-            </ul>
-          </div>
-      </div>
-    </div>
-    <div class="footer-copyright text-center py-3">© 2018 Copyright:
-      <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
-    </div>
-  </footer>
+        <div class="footer-copyright text-center py-3">© 2018 Copyright:
+            <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+        </div>
+    </footer>
 
     <!-- Scripts -->
-   {{--  <script src="{{ asset('js/bootstrap.js') }}"></script> --}}
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{--
+    <script src="{{ asset('js/bootstrap.js') }}"></script> --}}        
+    <script src="{{ asset('js/app.js') }}"></script> 
+    
+    {{--<script src="{{ asset('js/add_edit_books.js') }}"></script> --}}
 </body>
 
 </html>

@@ -9,7 +9,7 @@
             <figure class="card card-product">
               <div class="img-wrap">
                 <a :href="link_detail+book.id">
-                  <img src="https://via.placeholder.com/200" height="250">
+                  <img v-bind:src="'/images/books/'+book.foto_dir" height="250">
                 </a>
               </div>
               <figcaption class="info-wrap">

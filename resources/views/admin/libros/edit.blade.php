@@ -20,6 +20,10 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="">ISBN</label>
+                <input type="text" class="form-control" name="ISBN" placeholder="ISBN" value="{{$libro->ISBN}}">
+            </div>
+            <div class="form-group">
                 <label for>Descripción</label>
                 <textarea class="form-control" name="resumen" rows="3" placeholder="Descripción del libro" value="">{{$libro->resumen}}</textarea>
             </div>
@@ -86,10 +90,10 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
-            </div>-->
+            <div class="form-group">
+                <label for="foto_dir">Portada</label>
+                <input type="file" class="form-control-file" name="foto_dir" placeholder="Seleccione una imagen">
+            </div>
             <div class="btn-group">
                 <a href="/admin/libros" class="btn btn-secondary mr-2">Volver</a>
             </div>
@@ -98,3 +102,11 @@
     </div>
 </div>
 @endsection
+
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script>
+$(function () {
+  console.log("jquery ok");
+  
+});
+</script>
